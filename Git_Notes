@@ -22,3 +22,9 @@ git add -A
 Now, it will stage both
 
 ===============================================================================
+
+Create a repository in GitHub: https://github.com/pushparghya1981/Notes
+
+Now, map between local repo with remote repo
+git remote add origin https://github.com/pushparghya1981/Notes
+git push -u origin master --tags
