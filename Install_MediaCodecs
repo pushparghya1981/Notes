@@ -1,0 +1,13 @@
+
+Install Media Codecs:
+---------------------
+	sudo sed -i '/cdrom/d' /etc/apt/sources.list -- remove cd-rom from source list
+	sudo add-apt-repository multiverse
+	sudo apt install ubuntu-restricted-extras
+
+Download youtube videos:
+------------------------
+
+Go to Videos folder under home.
+Open terminal
+Command: youtube-dl https://www.youtube.com/watch?v=gBq9Zcs_5D8

@@ -1,0 +1,19 @@
+
+Youtube tutorials:
+
+https://www.youtube.com/channel/UCs6nmQViDpUw0nuIx9c_WvA - ProgrammingKnowledge
+
+https://www.youtube.com/watch?v=wBp0Rb-ZJak&t=4115s - The Complete Linux Course: Beginner to Power User!
+
+=================================
+Install utorrent: 
+
+**** having problem
+
+sudo tar xvzf utserver.tar.gz -C /opt/
+sudo chmod -R 755 /opt/utorrent-server-alpha-v3_3/
+sudo ln -s opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
+utserver -settingspath /opt/utorrent-server-alpha-v3_3/
+http://localhost:8080/gui
+username: admin
+=================================

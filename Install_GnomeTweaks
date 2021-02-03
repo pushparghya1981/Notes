@@ -1,0 +1,9 @@
+
+Install GNOME tweaks:
+----------------------
+	sudo apt install gnome-tweaks
+	sudo apt install gnome-tweak-tool
+	sudo apt install chrome-gnome-shell (install Google Chrome Gnome extension)
+
+	Customize desktop (Gnome):
+	https://www.youtube.com/watch?v=pUsX9xDlerU (Dash to dock + Transparent top bar + Arc menu)

@@ -1,0 +1,19 @@
+
+
+25 Things to Do After Installing Ubuntu 20.04 LTS (Focal Fossa)
+	https://www.tecmint.com/things-to-do-after-installing-ubuntu-20-04/
+
+	Install important updates:
+		1) On desktop, type (Alt+f) & type command - update-manager & hit enter
+		2) sudo apt-get update && sudo apt-get dist-upgrade
+		3) sudo apt-get update
+
+Applications:
+--------------
+	1) Google Chrome
+	2) Sublime Text Editor
+	3) P7Zip - Desktop
+	4) VLC player
+	5) Install Media Codecs
+
+***************************************************************************

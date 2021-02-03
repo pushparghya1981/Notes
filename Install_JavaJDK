@@ -1,0 +1,40 @@
+
+Install Java JDK from Oracle:
+---------------------------------
+
+Oracle account : pushparghya.mandal@gmail.com
+password : Sankha1981@home_oracle
+
+Download the file : jdk-11.0.9_linux-x64_bin.tar.gz
+Extract the file & rename : jdk-11.0.9
+
+We create a folder named 'jdk-11' at /usr/lib/jvm/jdk-11/
+Command: sudo mkdir -p /usr/lib/jvm/jdk-11/
+
+We move all the contents under 'jdk-11.0.9' to /usr/lib/jvm/jdk-11/
+First, we to the folder "/home/sankha/Documents/JDK" where 'jdk-11.0.9' present
+Command: sudo mv jdk-11.0.9/* /usr/lib/jvm/jdk-11/
+
+Configure java to linux:
+	sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-11/bin/java" 1010
+	sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11/bin/javac" 1010
+
+To see the java configuration:
+	sudo update-alternatives --config java, it will return (/usr/lib/jvm/jdk-11/bin/java)
+
+Set the environment variables
+	sudo gedit /etc/environment
+	JAVA_HOME="/usr/lib/jvm/jdk-11"
+
+	--------------------------------------
+
+	/usr/lib/jvm/jdk-11.0.9
+	export JAVA_HOME="/usr/lib/jvm/jdk-11.0.9"
+
+	--------------------------------------
+
+Refresh the folder
+	source /etc/environments
+
+Verify JAVA_HOME path variable value
+	echo $JAVA_HOME => /usr/lib/jvm/jdk-11 (updated)

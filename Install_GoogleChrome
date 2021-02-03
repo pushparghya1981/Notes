@@ -1,0 +1,11 @@
+
+
+Install Google Chrome:
+-----------------------
+
+	1) Download the Google Chrome exe file for Linux : google-chrome-stable_current_amd64.deb
+	2) It is present at ~/Documents/GoogleChrome
+	3) Open terminal
+	4) Command: sudo apt install '/home/sankha/Documents/GoogleChrome/google-chrome-stable_current_amd64.deb' 
+	5) Click Enter
+	6) Google Chrome will be installed & found in softwares

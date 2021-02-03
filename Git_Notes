@@ -1,0 +1,24 @@
+new gmail:me.pushparghya@gmail.com/pushu_1981
+github account : pushparghya1981/Sankha@1981
+
+git config --global user.name "sankha"
+git config --global user.email "me.pushparghya@gmail.com"
+
+git log - check all the commit messages
+
+===============================================================================
+changes outside git
+Scenario:
+I add one new file "myfile.txt".
+Renamed existing file "file-1" to "file1"
+
+Now, I want to commit these changes to git
+
+git add -u
+this will stage the renamning of the file "file1". But, it will not stage the added new file "myfile.txt"
+
+to add both (renaming & added new file)
+git add -A
+Now, it will stage both
+
+===============================================================================

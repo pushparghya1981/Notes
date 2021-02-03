@@ -1,0 +1,14 @@
+
+Install IntellijIdea:
+----------------------
+	https://www.youtube.com/user/TimBuchalka
+
+	1) Download the file from JetBrains - Community Edition - ideaIC-2020.2.3.tar.gz
+	2) Put in a folder - ~/Documents/IntellijIdea
+	3) Extract here
+	4) Open terminal here & run the 'idea.sh' file under 'bin'
+	5) Commands:
+		cd ideaIC-2020.2.3/
+   		cd idea-IC-202.7660.26/
+   		cd bin
+   		./idea.sh &
