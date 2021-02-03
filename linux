@@ -1,0 +1,390 @@
+1) Linux has a super administrator account "root"
+2) "root" is the most powerful account that can create, modify, delete accounts and make changews to the system configuration files
+3) Linux is a case-sensitive system
+4) Avoid using file names with spaces
+
+=========================================================
+There are different types of file systems:
+Ex: ext3, ext4, XFS, NTFS, FAT
+
+=========================================================
+
+Linux filesystems store information in a hierarchy of directories and files: refer to screenshot
+
+root (/) = home directory for the root user
+/bin = essential user command binaries
+/boot = static files of the boot loader
+/dev = device files
+/etc = host-specific system configuration
+/home = user home directory
+/lib = essential shared libraries & kernel modules
+/media = mount point for removable media (usb stick/external hard disks)
+/mnt = mount point for a temporarily mounted filesystems
+/opt = add-on applications software packages
+/sbin = system binaries
+/srv = data for services provided by the system
+/run = system daemons that start very early (e.g systemd & udev) to store temporary runtime files like PID files
+/tmp = temporary files
+/usr = multi-user utilities & applications
+    /usr/local, /usr/local/bin, /usr/local/games
+/var = variable files
+/proc = virtual filesystem documenting Kernel & process status as text files
+
+Note:
+Folders that you never ever want to mess with are /etc/, /sbin/, /bin/, /sys/, /proc/, /dev/ and /boot/
+
+------------------------------------------------------------------------------------------------------------
+
+For Ubuntu/Linux Mint (debian based): picked from Ubuntu website
+
+/bin - is a place for most commonly used terminal commands, like ls, mount, rm, etc.
+
+/boot - contains files needed to start up the system, including the Linux kernel, a RAM disk image and bootloader configuration files.
+
+/dev  - contains all device files, which are not regular files but instead refer to various hardware devices on the system, including hard drives.
+
+/etc  - contains system-global configuration files, which affect the system's behavior for all users.
+
+/home  - home sweet home, this is the place for users' home directories.
+
+/lib  - contains very important dynamic libraries and kernel modules
+
+/media  - is intended as a mount point for external devices, such as hard drives or removable media (floppies, CDs, DVDs).
+
+/mnt  - is also a place for mount points, but dedicated specifically to "temporarily mounted" devices, such as network filesystems.
+
+/opt  - can be used to store additional software for your system, which is not handled by the package manager.
+
+/proc  - is a virtual filesystem that provides a mechanism for kernel to send information to processes.
+
+/root  - is the superuser's home directory, not in /home/ to allow for booting the system even if /home/ is not available.
+
+/run  - is a tmpfs (temporary file system) available early in the boot process where ephemeral run-time data is stored. Files under this directory are removed or truncated at the beginning of the boot process.
+(It deprecates various legacy locations such as /var/run, /var/lock, /lib/init/rw in otherwise non-ephemeral directory trees as well as /dev/.* and /dev/shm  which are not device files.)
+
+/sbin  - contains important administrative commands that should generally only be employed by the superuser.
+
+/srv  - can contain data directories of services such as HTTP (/srv/www/) or FTP.
+
+/sys  - is a virtual filesystem that can be accessed to set or obtain information about the kernel's view of the system.
+
+/tmp  - is a place for temporary files used by applications.
+
+/usr  - contains the majority of user utilities and applications, and partly replicates the root directory structure, containing for instance, among others, /usr/bin/ and /usr/lib.
+
+/var  - is dedicated to variable data, such as logs, databases, websites, and temporary spool (e-mail etc.) files that persist from one boot to the next. A notable directory it contains is /var/log where system log files are kept.
+
+=========================================================
+
+Navigating file systems:
+cd = change directory
+pwd = print working directory
+ls = list
+whoami
+ls --help
+
+----------------------------------------------------------------------------
+When listing, we see below file information:
+
+    file type
+    file permissions
+    number of hard links to the file
+    file owner
+    file group
+    file size
+    date and time
+    file name
+
+Ex: -rw-r--r-- 1 root root 337 Oct  4 11:31 /etc/hosts
+
+The 1st character shows the file type:
+- = Regular file
+b = Block special file
+c = character special file or device file
+d = directory
+l = symbolic link
+n = network file
+p = Named pipe
+s = socket
+
+The next 9 chacaters shows the file permission:
+1st 3 characters = user
+2nd 3 chacarters = group
+3rd 3 characters = others
+
+r = read permission
+w = write permission
+x = execute permission
+s = setgid bit
+t = sticky bit
+
+To change the permission, use chmod
+
+Number 1 = hard links to the file
+
+Next 'root' = file owner is root
+Next 'root' = file group owner is root
+Next '337' = file size in Bytes
+Next is date & time
+last is the file name
+
+=========================================================
+Creating files and directories:
+
+to create directory: mkdir <directory name>
+to create files:
+    touch - create empty files
+    cp - copy
+    vi - open editor
+
+=========================================================
+Find files and Directories:
+
+    find
+    locate
+
+find . -name "lex" ---> here . means from the current folder to its sub folders
+locate <filename>/<directory>
+
+Difference between (find) & (locate) command:
+locate uses a prebuilt database, which should be regularly updated
+find iterates over a filesystem to locate files.
+Thus, locate is much faster than find, but can be accurate if the database (can be seen as cache)
+is not updated
+
+To update locate database run >>updatedb
+
+=========================================================
+Changing password:
+
+passwd <userid>
+Old password:
+New password:
+Confirm password
+
+=========================================================
+Wild Cards:
+A wildcard is a character that can be used as a substitute for any of a class of characters in a search
+* = represents zero or more characters
+? = represents a single character
+[] = represents a range of characters
+{1..5} = range
+\ = escape character
+^ = beginning of the line
+$ = end of the line
+
+Ex: I like to create 9 files whose names are like - abcd1-xyz, abcd2-xyz, abcd3-xyz
+Solution: So, to create 9 files in a single command will be = touch abcd{1..9}-xyz
+
+Ex: Now, to remove all the 5 files created above, we use (*) = rm abcd*-xyz
+
+Ex: I like to list all the files that have 'abcd' in it. Don't care about the 1st character & after it.
+Solution: ls -l ?bcd*
+
+=========================================================
+Hard & Sift links (ln):
+
+inode = Pointer / number of a file on a hard disks
+soft link = Link will be removed if the file is removed or renamed (ln -s)
+hard link = deleting, renaming or removing the file will not affect the hard link (ln)
+
+Ex: myfile.txt when created has am inode for it. Now we create hard & soft link for tyhr file
+So, when soft link is created, that link refers to the file.
+So, when hard link is created, that link refers to the inode of the file.
+
+How to get inode of any file? => ls -i <filename>
+Create hardlink of a file => ln <filename> <hardlinkname>
+Create softlink of a file => ln -s <filename> <hardlinkname>
+
+*** inode of the file & hard link is same. while inode of softlink is diferrent.
+
+=========================================================
+
+Commands Syntax:
+
+command options & arguments
+
+commands typically have syntax : command option(s) argument(s)
+
+Options:
+        modify the way that a command works
+        usually consists of a hyphen or dash followed by a single letter
+        some commands accept multiple options which can usually be grouped together after a single hyphen
+
+Arguments:
+        most coomands are used together with one or more arguments
+        some commands assume a default argument if none is specified
+        arguments are optional for some commands are required by others
+
+=========================================================
+
+File permissions:
+
+Unix is a multi-user system. Every file and directory in your account can be protected or made accessible to other users by changing its access permissions.
+Every user has responsibility for controlling access to their files.
+
+Each permission (rwx) can be controlled at 3 levels:
+        u - user (yourself)
+        g - group (can be people in the same project)
+        o - other (everyone on the systems)
+
+-rwxrwxrwx
+[type of file][next 3 - owner][next 3 - group][next 3 - others]
+
+Permissions for a file or directory may be restricted to by its types
+
+There are 3 types of permissions:
+        r = read
+        w = write
+        x = execute (running the program)
+
+command to change permission  - chmod
+
+Adding permission to user => chmod u+(r/w/x) <filename>
+Adding permission to group => chmod g+(r/w/x) <filename>
+Adding permission to other => chmod o+(r/w/x) <filename>
+Adding permission to all at once => chmod a+(r/w/x) <filename>
+
+Removing permission to user => chmod u-(r/w/x) <filename>
+Removing permission to group => chmod g-(r/w/x) <filename>
+Removing permission to other => chmod o-(r/w/x) <filename>
+Removing permission to all at once => chmod a-(r/w/x) <filename>
+
+For any directory, we see permission (x) given to it by default. Because, we can cd to that directory.
+If we remove the permission (x) from that directory, then we can't cd into it.
+
+--------------------------------------------------------
+Permissions by numeric:
+
+0 - no permission                        = ---
+1 - Execute                                    = --x
+2 - Write                                         = -w-
+3 - Execute + Write                     = -wx
+4 - Read                                          = r--
+5 - Read + Execute                      = rw-
+6 - Read + Write                           = rw-
+7 - Read + Write + Execute      = rwx
+
+So, chmod 764 means:
+7 - (rwx) to user
+6 - (rw) to group
+4 - (r) to others
+
+=========================================================
+File & Directory ownerships:
+
+There are 2 owners of a file / directory
+        User
+        Group
+
+Command to change ownership: these can only be done by root user (sudo)
+        User => chown
+        Group = > chgrp
+
+Recursive ownership change option: -R
+This will change the ownerships all the sub directories and files within the directory.
+
+Changing the owner of a folder "test1" from root to sankha
+sudo chown sankha test1
+
+=========================================================
+
+Access Control List (ACL)
+
+It provides an additional, more flexible permission mechanism for file systems.
+It is designed to assist with UNIX file permissions.
+ACL allows you to give permissions for any user or group to any disc resource.
+
+Use of ACL:
+Say a particular user is anot a member of group created by you.
+But, still you want to give read & write permission access.
+We can do that without making user a member of the group.
+
+Commands:
+    setfacl - set file acl
+    getfacl - get file acl
+
+To add permission for user:
+setfacl -m u:<user>:rwx <file_path>
+
+To add permission for group:
+setfacl -m g:<group>:rwx <file_path>
+
+To allow all files / directoties within a directory:
+setfacl -Rm "<directoty>" <directory_path>
+
+To remove a specific entry:
+setfacl -x u:user <file_path>
+
+To remove all entries:
+setfacl -b <file_path>
+
+=========================================================
+
+Help Commands:
+
+whatis: short description
+--help: overall manual
+man: full manual
+
+=========================================================
+Adding text to files:
+    1. Vi editor (vi)
+    2. redirect command output (> & >>)
+    3. echo > or >>
+
+By echo:
+echo "Hi, Pushparghya Mandal" > test1.txt, it writes "Hi, Pushparghya Mandal" to file test1.txt
+To add more lines to it.
+echo "he loves coding" >> test1.txt
+Note: if we wrote echo "he loves coding" > test1.txt, then "he loves coding" would overrite "Hi, Pushparghya Mandal"
+
+2. date >> test1.txt (will append current date to the file)
+
+=========================================================
+Standard output to a file (tee)
+"tee" command is used to store & view (both at the same time) the output of any command
+tee --help
+
+Ex: I want to output the command of "hostname" to a file using 'tee' command
+echo hostname | tee teecommand.txt
+
+Ex: I want to add output of command "whoami" to the above file using 'tee' command
+echo whoami | tee -a teecommand.txt
+
+Ex: I just want to echo "sometext" to the above file
+echo "some text added" | tee -a teecommand.txt
+
+Ex: I want to write the output of "whoami" command to 2 different files at same time using 'tee' command
+echo hostname | tee file-1 file-2
+
+=========================================================
+Pipes:  is used by the shell to connect the output of one command directly to the input of another command
+
+Syntax: command1 [arguments] | command2[arguments]
+ls -ltr | more ---> this will show the listing 1 page at a time. At below it shows (--More--). to continue, we press 'spacebar'. to quit, we press 'q'
+
+Ex: to see last 10 listing of any directory
+ll | tail -10 or ls -ltr |tail -5
+
+=========================================================
+File maintenance Commands:
+
+cp = copy
+cp <source> <destination>
+
+rm = delete
+rm <filename>
+
+mv = move/cut/rename
+mv <current_filename> <new_filename> (renaming a file)
+mv <current_directory> <new_directory> (renaming a directory)
+mv <current_filename> <new_filepath> (cut-paste a file to a different directory)
+
+mkdir = make directory
+rmdir / rm -r = delete directory
+rmdir <directory>
+
+chgrp = change group
+chown = change owner
+sudo chown sankha:sankha file2 (This will change the ownership of the owner & group at same time)
